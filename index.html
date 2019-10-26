@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Rhythm Hunter🎵🎵🎵</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+			<header id="header" class="alt">
+				<div class="inner">
+					<h1>Rhythm Hunter</h1>
+					<p>effortless conversion from audio to notation in real-time</p>
+				</div>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Banner -->
+					<section id="intro" class="main">
+                        <div id="notes"></div>
+
+                        <script src="https://npmcdn.com/vexflow@1.2.84/releases/vexflow-debug.js"></script>
+                        <script>
+                            VF = Vex.Flow;
+                            var WorkspaceInformation = {
+                                div: document.getElementById("notes"),
+                                canvasWidth: 300,
+                                canvasHeight: 150,
+                            };
+                            var renderer = new VF.Renderer(
+                                WorkspaceInformation.div,
+                                VF.Renderer.Backends.SVG,
+                            );
+                            renderer.resize(WorkspaceInformation.canvasWidth, WorkspaceInformation.canvasHeight);
+                            var context = renderer.getContext();
+                            context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
+                        
+                            var stave = new VF.Stave(10, 40, 400);
+                            stave.addClef("treble").addTimeSignature("4/4");
+                            stave.setContext(context).draw();
+                            
+                            var notes = [
+                                new VF.StaveNote({clef: "treble", keys: ["c/4"], duration: "q" }),
+                                new VF.StaveNote({clef: "treble", keys: ["d/4"], duration: "q" }),
+                                new VF.StaveNote({clef: "treble", keys: ["b/4"], duration: "qr" }),
+                                new VF.StaveNote({clef: "treble", keys: ["c/4", "e/4", "g/4"], duration: "q" })
+                            ];
+                            var voice = new VF.Voice({num_beats: 4,  beat_value: 4});
+                            voice.addTickables(notes);
+
+                            var formatter = new VF.Formatter().joinVoices([voice]).format([voice], 400);
+
+                            voice.draw(context, stave);
+                        </script>
+						<ul class="actions">
+							<li><a href="#" class="button big">Learn More</a></li>
+						</ul>
+					</section>
+			</div>
+			<div style="text-align: center">
+				<h1>Audio Recording Test</h1>
+				<p>Talk for 3 seconds, then you will hear your recording played back</p>
+				<script src="index.js"></script>
+				<button id="action" onclick="handleAction()">Start recording...</button>
+			</div>>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	</body>
+</html>
