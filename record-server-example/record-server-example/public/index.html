@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record and save audio</title>
+    <style>
+      audio {
+        display: block;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <section>
+        <div id="notes"></div>
+        <button id="record">Record</button>
+        <button id="stop" disabled>Stop</button>
+        <button id="play" disabled>Play</button>
+        <button id="save" disabled>Save</button>
+        <div id="saved-audio-messages">
+          <h2>Saved messages</h2>
+        </div>
+        <script src="https://npmcdn.com/vexflow@1.2.84/releases/vexflow-debug.js"></script>
+        <script src="score.js"></script>
+      </section>
+    </div>
+  </body>
+</html>
